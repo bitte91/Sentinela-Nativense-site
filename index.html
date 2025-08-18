@@ -25,15 +25,23 @@
         <a href="#noticias" aria-current="page">Notícias</a>
         <a href="#explica">Sentinela Explica</a>
         <a href="#sobre">Sobre</a>
+        <a href="#denuncias">Denúncias</a>
         <button id="toggle-theme" class="btn ghost" type="button" aria-label="Alternar tema">Tema</button>
         <button id="font-plus" class="btn ghost" type="button" aria-label="Aumentar fonte">A+</button>
       </nav>
     </div>
   </header>
 
-  <main id="conteudo" class="container">
-    <section class="hero" id="noticias">
-      <h1>Notícias de Natividade e Região</h1>
+  <main id="conteudo">
+    <section class="news-ticker" aria-label="Últimas Notícias">
+      <div class="container ticker-container">
+        <span class="ticker-label">ÚLTIMAS</span>
+        <div id="ticker-content" class="ticker-content"></div>
+      </div>
+    </section>
+    <div class="container">
+      <section class="hero" id="noticias">
+        <h1>Notícias de Natividade e Região</h1>
       <p>Curadoria local com foco em utilidade pública, serviços e transparência.</p>
       <div class="controls" style="justify-content:center; margin-top:10px">
         <input id="search" type="search" placeholder="Buscar por título, resumo ou tag…" aria-label="Buscar notícias"/>
@@ -63,6 +71,12 @@
     <section id="sobre" style="margin-top:32px">
       <h2>Sobre o projeto</h2>
       <p>Iniciativa cidadã independente voltada à transparência, à checagem e à utilidade pública.</p>
+    </section>
+
+    <section id="denuncias" style="margin-top:32px">
+      <h2>Denúncias</h2>
+      <p>Viu algo errado? Envie sua denúncia com informações, fotos ou vídeos. Garantimos o sigilo da sua identidade.</p>
+      <a href="mailto:denuncia@sentinelanativense.com.br?subject=Denúncia" class="btn">Enviar denúncia</a>
     </section>
   </main>
 

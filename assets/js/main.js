@@ -13,6 +13,7 @@
 const searchInput = document.getElementById('search');
 const listEl = document.getElementById('news-list');
 const filtersEl = document.getElementById('filters');
+const tickerContentEl = document.getElementById('ticker-content');
 const modal = document.getElementById('modal');
 const modalTitle = document.getElementById('modal-title');
 const modalBody = document.getElementById('modal-body');
@@ -30,6 +31,7 @@ async function init() {
     NEWS = await response.json();
     applyFilters();
     renderFilters();
+    renderTicker();
   } catch (error) {
     console.error(error);
     listEl.innerHTML = '<p>Não foi possível carregar as notícias. Tente novamente mais tarde.</p>';
@@ -40,6 +42,11 @@ function renderFilters() {
   const sections = ['Todos', ...new Set(NEWS.map(n => n.section))];
   filtersEl.innerHTML = sections.map(s => `<button class="btn ghost" data-filter="${s}">${s}</button>`).join('');
   filtersEl.querySelector(`[data-filter="${activeCategory}"]`)?.classList.add('active');
+}
+
+function renderTicker() {
+  const recentNews = [...NEWS].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
+  tickerContentEl.innerHTML = recentNews.map(n => `<a href="#" data-open="${n.id}">${n.title}</a>`).join('<span style="margin-inline: 12px;">//</span>');
 }
 
 function applyFilters() {
@@ -72,8 +79,12 @@ filtersEl?.addEventListener('click', e => {
 });
 
 function renderList(items){
+  if (!items.length) {
+    listEl.innerHTML = '<p>Nenhuma notícia encontrada.</p>';
+    return;
+  }
   listEl.innerHTML = items.map((n, i) => `
-    <article class="card fade-in" style="animation-delay: ${i * 50}ms" tabindex="0" role="article" aria-labelledby="t-${n.id}">
+    <article class="card ${i === 0 ? 'card--hero' : ''} fade-in" style="animation-delay: ${i * 50}ms" tabindex="0" role="article" aria-labelledby="t-${n.id}">
       <div class="badge">${n.regional ? 'Regional' : 'Natividade'}</div>
       <h3 id="t-${n.id}" style="margin:.5rem 0">${n.title}</h3>
       <p style="color:var(--muted); margin:.25rem 0 .75rem 0">${new Date(n.date).toLocaleDateString()}</p>

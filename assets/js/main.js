@@ -12,25 +12,68 @@
 // Elements
 const searchInput = document.getElementById('search');
 const listEl = document.getElementById('news-list');
+const filtersEl = document.getElementById('filters');
 const modal = document.getElementById('modal');
 const modalTitle = document.getElementById('modal-title');
 const modalBody = document.getElementById('modal-body');
 const closeModalBtn = document.getElementById('close-modal');
 const toast = document.getElementById('toast');
 
-// Sample data
-const NEWS = [
-  {id:1, title:'Mutirão de saúde realiza 200 atendimentos', date:'2025-08-12', section:'Saúde', tags:['saude','mutirao'], summary:'Ação conjunta no fim de semana agilizou consultas e exames.', views:128, regional:false},
-  {id:2, title:'Ponte do Ribeirão recebe manutenção preventiva', date:'2025-08-10', section:'Infraestrutura', tags:['obras','ponte'], summary:'Trânsito em meia pista durante a manhã desta terça.', views:256, regional:true},
-  {id:3, title:'Câmara aprova moção de aplauso a professores', date:'2025-08-03', section:'Educação', tags:['educacao'], summary:'Reconhecimento pelo trabalho no 1º semestre.', views:89, regional:false},
-  {id:4, title:'Calendário de vacinação é ampliado', date:'2025-08-01', section:'Saúde', tags:['vacina'], summary:'Novos horários e pontos de apoio no bairro Vargem Grande.', views:176, regional:true}
-];
+let NEWS = [];
+let filtered = [];
+let activeCategory = 'Todos';
 
-let filtered = [...NEWS];
+async function init() {
+  try {
+    const response = await fetch('assets/news.json');
+    if (!response.ok) throw new Error('Failed to fetch news');
+    NEWS = await response.json();
+    applyFilters();
+    renderFilters();
+  } catch (error) {
+    console.error(error);
+    listEl.innerHTML = '<p>Não foi possível carregar as notícias. Tente novamente mais tarde.</p>';
+  }
+}
+
+function renderFilters() {
+  const sections = ['Todos', ...new Set(NEWS.map(n => n.section))];
+  filtersEl.innerHTML = sections.map(s => `<button class="btn ghost" data-filter="${s}">${s}</button>`).join('');
+  filtersEl.querySelector(`[data-filter="${activeCategory}"]`)?.classList.add('active');
+}
+
+function applyFilters() {
+  const q = searchInput.value.toLowerCase();
+
+  // Start with category filter
+  let items = activeCategory === 'Todos'
+    ? [...NEWS]
+    : NEWS.filter(n => n.section === activeCategory);
+
+  // Then apply search query
+  if (q) {
+    items = items.filter(n => n.title.toLowerCase().includes(q) || n.summary.toLowerCase().includes(q) || n.tags.join(' ').includes(q));
+  }
+
+  filtered = items;
+  renderList(filtered);
+}
+
+filtersEl?.addEventListener('click', e => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+
+  activeCategory = btn.dataset.filter;
+  searchInput.value = '';
+  applyFilters();
+
+  filtersEl.querySelector('.active')?.classList.remove('active');
+  btn.classList.add('active');
+});
 
 function renderList(items){
-  listEl.innerHTML = items.map(n => `
-    <article class="card" tabindex="0" role="article" aria-labelledby="t-${n.id}">
+  listEl.innerHTML = items.map((n, i) => `
+    <article class="card fade-in" style="animation-delay: ${i * 50}ms" tabindex="0" role="article" aria-labelledby="t-${n.id}">
       <div class="badge">${n.regional ? 'Regional' : 'Natividade'}</div>
       <h3 id="t-${n.id}" style="margin:.5rem 0">${n.title}</h3>
       <p style="color:var(--muted); margin:.25rem 0 .75rem 0">${new Date(n.date).toLocaleDateString()}</p>
@@ -46,13 +89,9 @@ renderList(filtered);
 
 // Search with debounce
 let t;
-searchInput?.addEventListener('input', (e)=>{
+searchInput?.addEventListener('input', ()=>{
   clearTimeout(t);
-  const q = e.target.value.toLowerCase();
-  t = setTimeout(()=>{
-    filtered = NEWS.filter(n => n.title.toLowerCase().includes(q) || n.summary.toLowerCase().includes(q) || n.tags.join(' ').includes(q));
-    renderList(filtered);
-  }, 150);
+  t = setTimeout(applyFilters, 150);
 });
 
 // Delegated events
@@ -76,7 +115,7 @@ let lastFocus;
 function openModal(n){
   lastFocus = document.activeElement;
   modalTitle.textContent = n.title;
-  modalBody.innerHTML = `<p><strong>Seção:</strong> ${n.section}</p><p style="color:var(--muted)">${new Date(n.date).toLocaleString()}</p><hr/><p>${n.summary} — conteúdo completo em breve.</p>`;
+  modalBody.innerHTML = `<p><strong>Seção:</strong> ${n.section}</p><p style="color:var(--muted)">${new Date(n.date).toLocaleString()}</p><hr/><p>${n.content}</p>`;
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
   trapFocus(modal);
@@ -127,3 +166,6 @@ if ('serviceWorker' in navigator){
     navigator.serviceWorker.register('./sw.js').catch(()=>{});
   });
 }
+
+// Init app
+document.addEventListener('DOMContentLoaded', init);

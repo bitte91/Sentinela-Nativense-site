@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "title": "Mutirão de saúde realiza 200 atendimentos",
+    "date": "2025-08-12",
+    "section": "Saúde",
+    "tags": ["saude", "mutirao"],
+    "summary": "Ação conjunta no fim de semana agilizou consultas e exames.",
+    "content": "O mutirão de saúde realizado no último fim de semana foi um sucesso, com mais de 200 atendimentos efetuados. A iniciativa, uma parceria entre a Secretaria de Saúde e voluntários, ofereceu consultas em diversas especialidades, além de exames rápidos. O objetivo foi reduzir a fila de espera e garantir que a população tivesse acesso rápido aos cuidados necessários. Outras ações como esta estão planejadas para os próximos meses.",
+    "views": 128,
+    "regional": false
+  },
+  {
+    "id": 2,
+    "title": "Ponte do Ribeirão recebe manutenção preventiva",
+    "date": "2025-08-10",
+    "section": "Infraestrutura",
+    "tags": ["obras", "ponte"],
+    "summary": "Trânsito em meia pista durante a manhã desta terça.",
+    "content": "A ponte do Ribeirão, um dos principais acessos da cidade, passou por manutenção preventiva nesta terça-feira. As equipes de infraestrutura realizaram reparos na estrutura e na pavimentação. Para garantir a segurança dos trabalhadores e motoristas, o trânsito operou em sistema de meia pista durante toda a manhã. A prefeitura informa que a manutenção é essencial para garantir a durabilidade e segurança da ponte.",
+    "views": 256,
+    "regional": true
+  },
+  {
+    "id": 3,
+    "title": "Câmara aprova moção de aplauso a professores",
+    "date": "2025-08-03",
+    "section": "Educação",
+    "tags": ["educacao"],
+    "summary": "Reconhecimento pelo trabalho no 1º semestre.",
+    "content": "Em sessão realizada na última semana, a Câmara de Vereadores aprovou por unanimidade uma moção de aplauso aos professores da rede municipal. A homenagem é um reconhecimento ao empenho e dedicação dos educadores durante o primeiro semestre de 2025, especialmente diante dos novos desafios pedagógicos. Os vereadores destacaram a importância dos professores para o futuro da comunidade.",
+    "views": 89,
+    "regional": false
+  },
+  {
+    "id": 4,
+    "title": "Calendário de vacinação é ampliado",
+    "date": "2025-08-01",
+    "section": "Saúde",
+    "tags": ["vacina"],
+    "summary": "Novos horários e pontos de apoio no bairro Vargem Grande.",
+    "content": "A Secretaria de Saúde anunciou a ampliação do calendário de vacinação contra a gripe. A partir da próxima semana, novos horários estarão disponíveis e um ponto de apoio será montado no bairro Vargem Grande para facilitar o acesso dos moradores da região. A medida visa aumentar a cobertura vacinal antes da chegada do inverno.",
+    "views": 176,
+    "regional": true
+  }
+]

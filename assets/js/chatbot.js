@@ -239,23 +239,40 @@ class SentinelaChatbot {
     }
 
     async callChatbotAPI(message) {
-        const response = await fetch(this.apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                message: message,
-                conversationId: this.conversationId
-            })
-        });
+        try {
+            const response = await fetch(this.apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: message,
+                    conversationId: this.conversationId
+                })
+            });
 
-        if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.error || `HTTP ${response.status}`);
+            if (!response.ok) {
+                // Handle different error types
+                if (response.status === 404) {
+                    throw new Error('Chatbot API não encontrado. Verifique se o backend está rodando.');
+                } else if (response.status === 429) {
+                    throw new Error('Muitas mensagens enviadas. Aguarde um momento.');
+                } else if (response.status >= 500) {
+                    throw new Error('Erro no servidor. Tente novamente em alguns instantes.');
+                } else {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.error || `Erro HTTP ${response.status}`);
+                }
+            }
+
+            return await response.json();
+        } catch (error) {
+            // Re-throw with more context if it's a network error
+            if (error.message.includes('fetch') || error.name === 'TypeError') {
+                throw new Error('Problema de conexão. Verifique se o backend está rodando em ' + this.apiUrl);
+            }
+            throw error;
         }
-
-        return await response.json();
     }
 
     setInputState(enabled) {
@@ -282,9 +299,18 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (shouldShowChatbot) {
         // Determine API URL based on environment
-        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const apiUrl = isLocal ? 'http://localhost:3000/api/chatbot' : '/api/chatbot';
+        let apiUrl;
+        const isLocalDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         
+        if (isLocalDev) {
+            // Local development - backend on port 3000
+            apiUrl = 'http://localhost:3000/api/chatbot';
+        } else {
+            // Production - same domain
+            apiUrl = '/api/chatbot';
+        }
+        
+        console.log('🤖 Initializing chatbot with API:', apiUrl);
         window.sentinelaChatbot = new SentinelaChatbot(apiUrl);
     }
 });

@@ -1,9 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <rect width="512" height="512" fill="#1a3a6e"/>
-  <circle cx="256" cy="200" r="120" fill="#d4af37" stroke="#fff" stroke-width="8"/>
-  <rect x="136" y="280" width="240" height="160" rx="20" fill="#d4af37"/>
-  <rect x="156" y="300" width="200" height="20" fill="#1a3a6e"/>
-  <rect x="156" y="340" width="200" height="20" fill="#1a3a6e"/>
-  <rect x="156" y="380" width="120" height="20" fill="#1a3a6e"/>
-  <text x="256" y="480" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">SENTINELA</text>
+  <!-- Background -->
+  <rect width="512" height="512" fill="#1e3a8a" rx="64"/>
+  
+  <!-- Shield Shape -->
+  <path d="M256 64C256 64 160 96 160 128C160 320 256 448 256 448C256 448 352 320 352 128C352 96 256 64 256 64Z" 
+        fill="#f59e0b" stroke="#ffffff" stroke-width="8"/>
+  
+  <!-- Inner Shield Detail -->
+  <path d="M256 96C256 96 192 116 192 140C192 280 256 384 256 384C256 384 320 280 320 140C320 116 256 96 256 96Z" 
+        fill="#1e3a8a"/>
+  
+  <!-- Center Emblem -->
+  <circle cx="256" cy="200" r="32" fill="#f59e0b"/>
+  <rect x="240" y="240" width="32" height="80" fill="#f59e0b" rx="4"/>
+  
+  <!-- Text -->
+  <text x="256" y="480" text-anchor="middle" fill="#ffffff" 
+        font-family="Arial, sans-serif" font-size="32" font-weight="bold">SENTINELA</text>
 </svg>

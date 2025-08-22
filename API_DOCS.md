@@ -84,7 +84,42 @@ Fetch aggregated news from multiple sources.
 
 **Caching:** 10 minutes (600 seconds)
 
-### 3. GET /api/og
+### 3. POST /api/chatbot 🤖 **NEW**
+
+Interact with the Gemini AI-powered chatbot for transparency and civic education.
+
+**Request:**
+```json
+{
+  "message": "Como funciona a Lei de Acesso à Informação?",
+  "conversationId": "optional-uuid-for-context"
+}
+```
+
+**Response (200):**
+```json
+{
+  "response": "A Lei de Acesso à Informação (LAI) garante...",
+  "conversationId": "uuid-v4",
+  "timestamp": "2025-08-22T20:00:00.000Z"
+}
+```
+
+**Features:**
+- 🧠 **Specialized Knowledge**: Trained on transparency, civic rights, and public administration
+- 💬 **Conversation Context**: Maintains context across multiple messages
+- ⚡ **Real-time Responses**: Powered by Google Gemini 1.5 Flash
+- 🛡️ **Safety Filters**: Content moderation and appropriate responses
+- 📚 **Educational Focus**: Explains complex civic concepts in simple terms
+
+**Rate Limiting:** 20 messages per hour per IP
+
+**Error Responses:**
+- `400` - Invalid message format or content
+- `429` - Rate limit exceeded
+- `500` - AI service error (includes fallback message)
+
+### 4. GET /api/og
 
 Generate Open Graph metadata for social sharing.
 
@@ -101,9 +136,27 @@ Create `.env.local` in the backend directory:
 KV_REST_API_URL=your_kv_url
 KV_REST_API_TOKEN=your_kv_token
 
+# Google Gemini AI (Required for chatbot) 🤖
+GEMINI_API_KEY=your_gemini_api_key
+
 # Optional
 NODE_ENV=development
+DENUNCIAS_RATE_LIMIT=5
+CHATBOT_RATE_LIMIT=20
 ```
+
+### How to get API Keys:
+
+**Vercel KV:**
+1. Go to [Vercel Dashboard](https://vercel.com/dashboard)
+2. Navigate to "Storage" → "Create Database" → "KV"
+3. Create a new KV database
+4. Copy the connection details
+
+**Google Gemini AI:**
+1. Visit [Google AI Studio](https://aistudio.google.com/)
+2. Create a new API key
+3. Copy the key to your environment variables
 
 ## 🛡️ Security Features
 

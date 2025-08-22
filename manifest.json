@@ -1,15 +1,31 @@
 {
   "name": "Sentinela Nativense - Transparência e Ação Cidadã",
   "short_name": "Sentinela",
-  "description": "Portal de transparência pública e jornalismo investigativo para Natividade da Serra",
+  "description": "Portal de transparência pública e jornalismo investigativo para Natividade da Serra com assistente IA",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#1a3a6e",
-  "theme_color": "#1a3a6e",
-  "categories": ["news", "government", "productivity"],
+  "background_color": "#1e3a8a",
+  "theme_color": "#1e3a8a",
+  "categories": ["news", "government", "productivity", "education"],
   "lang": "pt-BR",
+  "screenshots": [
+    {
+      "src": "https://via.placeholder.com/1280x720/1e3a8a/f59e0b?text=Sentinela+Desktop",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Homepage do Sentinela Nativense"
+    },
+    {
+      "src": "https://via.placeholder.com/750x1334/1e3a8a/f59e0b?text=Sentinela+Mobile",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Versão mobile com chatbot IA"
+    }
+  ],
   "icons": [
     {
       "src": "assets/icons/icon.svg",
@@ -18,16 +34,54 @@
       "purpose": "any maskable"
     },
     {
-      "src": "https://via.placeholder.com/192x192/1a3a6e/d4af37?text=S",
+      "src": "https://via.placeholder.com/192x192/1e3a8a/f59e0b?text=S",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "https://via.placeholder.com/512x512/1a3a6e/d4af37?text=SENTINELA",
+      "src": "https://via.placeholder.com/512x512/1e3a8a/f59e0b?text=🛡️",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "https://via.placeholder.com/192x192/1e3a8a/ffffff?text=S",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Fazer Denúncia",
+      "short_name": "Denúncia",
+      "description": "Acesso rápido ao canal de denúncias",
+      "url": "./pages/denuncias.html",
+      "icons": [{
+        "src": "https://via.placeholder.com/96x96/ef4444/ffffff?text=📢",
+        "sizes": "96x96"
+      }]
+    },
+    {
+      "name": "Chatbot IA",
+      "short_name": "Assistente",
+      "description": "Converse com nosso assistente virtual",
+      "url": "./pages/explica.html",
+      "icons": [{
+        "src": "https://via.placeholder.com/96x96/10b981/ffffff?text=🤖",
+        "sizes": "96x96"
+      }]
+    },
+    {
+      "name": "Notícias",
+      "short_name": "Notícias",
+      "description": "Últimas notícias da região",
+      "url": "./pages/noticias.html",
+      "icons": [{
+        "src": "https://via.placeholder.com/96x96/3b82f6/ffffff?text=📰",
+        "sizes": "96x96"
+      }]
     }
   ]
 }

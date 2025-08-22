@@ -31,6 +31,15 @@ Um sistema completo para transparência municipal, canal de denúncias, e agrega
 - ✅ Deduplicação por título
 - ✅ Timeout protection (8s por fonte)
 
+### 🤖 **Assistente Virtual com IA** 🎆 **NOVO**
+- ✅ Chatbot inteligente powered by Google Gemini AI
+- ✅ Especializado em transparência pública e direitos do cidadão
+- ✅ Conversações contextuais com memória
+- ✅ Interface moderna com animações
+- ✅ Rate limiting (20 mensagens/hora)
+- ✅ Respostas educativas sobre LAI, orçamento, licitações
+- ✅ Disponível em "Sentinela Explica" e página principal
+
 ### 🔧 **Melhorias Técnicas Implementadas**
 - ✅ CSS extraído para arquivo externo (melhor cache)
 - ✅ PWA icons e manifest completos
@@ -156,9 +165,22 @@ vercel --prod
 ### Variáveis de Ambiente
 Crie `.env.local` no diretório backend:
 ```env
+# Obrigatório para denúncias
 KV_REST_API_URL=sua_url_kv
 KV_REST_API_TOKEN=seu_token_kv
+
+# Obrigatório para chatbot IA 🤖
+GEMINI_API_KEY=sua_chave_gemini
+
+# Opcional
+NODE_ENV=development
+DENUNCIAS_RATE_LIMIT=5
+CHATBOT_RATE_LIMIT=20
 ```
+
+### Como obter as chaves:
+**Vercel KV:** [Dashboard](https://vercel.com/dashboard) → Storage → Create KV Database  
+**Google Gemini:** [AI Studio](https://aistudio.google.com/) → Create API Key
 
 ## 📱 PWA
 

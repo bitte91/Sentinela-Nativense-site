@@ -1,14 +1,70 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sentinela Explica — Sentinela</title><link rel="stylesheet" href="../assets/css/main.min.css"><script defer src="../assets/js/main.min.js"></script></head>
-<body><header class="site-header"><nav class="nav">
-<div class="logo">SENTINELA</div><button class="burger" aria-label="Abrir menu">☰</button>
-<div class="links"><a href="../index.html">Início</a><a href="noticias.html">Notícias</a><a href="explica.html">Sentinela Explica</a><a href="ajuda.html">Ajuda Jurídica</a><a href="sobre.html">Sobre Nós</a></div>
-<a class="btn" href="denuncias.html">Enviar Denúncia</a></nav></header>
-<section class="section reveal"><nav class="breadcrumbs" aria-label="breadcrumb"><a href="../index.html">Início</a> › Sentinela Explica</nav>
-<h2>Sentinela Explica</h2><p class="lead">Conteúdo demonstrativo para visualização do layout.</p>
-<div id="explicaList" class="grid grid-3"><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div></div>
-<div id="modal" class="card" style="display:none;position:fixed;inset:10% 6%;background:#fff;z-index:70;box-shadow:0 18px 40px rgba(0,0,0,.22);overflow:auto;max-height:80%">
-  <div class="p"><button id="closeModal" class="button" style="float:right;background:#D72638">Fechar</button><div id="modalBody"></div></div>
-</div>
-</section>
-<footer class="site-footer"><div class="inner"><p>© 2025 Sentinela Nativense</p></div></footer></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Entenda conceitos de transparência pública com explicações didáticas do Sentinela Nativense">
+    <title>Sentinela Explica — Transparência Pública Explicada</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="icon" type="image/svg+xml" href="../assets/icons/icon.svg">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav">
+            <div class="logo">🛡️ SENTINELA</div>
+            <button class="burger" aria-label="Abrir menu">☰</button>
+            <div class="links">
+                <a href="../index.html">Início</a>
+                <a href="noticias.html">Notícias</a>
+                <a href="explica.html">Sentinela Explica</a>
+                <a href="ajuda.html">Ajuda Jurídica</a>
+                <a href="sobre.html">Sobre Nós</a>
+            </div>
+            <a class="btn" href="denuncias.html">Enviar Denúncia</a>
+        </nav>
+    </header>
+    
+    <section class="section reveal">
+        <nav class="breadcrumbs" aria-label="breadcrumb">
+            <a href="../index.html">Início</a> › Sentinela Explica
+        </nav>
+        
+        <h2>Sentinela Explica</h2>
+        <p class="lead">Entenda conceitos de transparência pública, direitos do cidadão e participação democrática com explicações didáticas e práticas.</p>
+        
+        <!-- Chatbot Integration Notice -->
+        <div class="explica-intro" style="background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; text-align: center;">
+            <h3 style="color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                🤖 Assistente Virtual Sentinela
+            </h3>
+            <p style="margin-bottom: 1rem; color: var(--dark);">Tire suas dúvidas sobre transparência pública em tempo real! Nosso assistente inteligente está pronto para explicar conceitos, orientar sobre seus direitos e ajudar com questões práticas de cidadania.</p>
+            <p style="font-size: 0.9rem; color: var(--gray); font-style: italic;">Clique no ícone do chatbot no canto inferior direito para começar uma conversa.</p>
+        </div>
+        
+        <div id="explicaList" class="grid grid-3">
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+        </div>
+        
+        <!-- Modal for content -->
+        <div id="modal" class="card" style="display:none;position:fixed;inset:10% 6%;background:#fff;z-index:70;box-shadow:0 18px 40px rgba(0,0,0,.22);overflow:auto;max-height:80%;border-radius:12px;">
+            <div class="p">
+                <button id="closeModal" class="button" style="float:right;background:#D72638">Fechar</button>
+                <div id="modalBody"></div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="site-footer">
+        <div class="inner">
+            <p>© 2025 Sentinela Nativense - Transparência e Ação Cidadã</p>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/chatbot.js"></script>
+</body>
+</html>

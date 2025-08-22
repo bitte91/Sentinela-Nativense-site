@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Debug Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; }
+        .debug-info { background: #f0f0f0; padding: 1rem; margin: 1rem 0; border-radius: 8px; }
+        .test-btn { background: #1e3a8a; color: white; padding: 1rem 2rem; border: none; border-radius: 8px; cursor: pointer; margin: 0.5rem; }
+        .test-btn:hover { background: #2563eb; }
+        .result { margin-top: 1rem; padding: 1rem; border-radius: 8px; }
+        .success { background: #dcfce7; color: #166534; }
+        .error { background: #fef2f2; color: #dc2626; }
+        pre { white-space: pre-wrap; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Chatbot Debug Test</h1>
+    
+    <div class="debug-info">
+        <h3>Current Environment:</h3>
+        <p><strong>URL:</strong> <span id="currentUrl"></span></p>
+        <p><strong>Host:</strong> <span id="currentHost"></span></p>
+        <p><strong>Protocol:</strong> <span id="currentProtocol"></span></p>
+        <p><strong>Port:</strong> <span id="currentPort"></span></p>
+    </div>
+
+    <div class="debug-info">
+        <h3>API URL Tests:</h3>
+        <button class="test-btn" onclick="testAPI('/api/chatbot')">Test: /api/chatbot</button>
+        <button class="test-btn" onclick="testAPI('http://localhost:3000/api/chatbot')">Test: localhost:3000</button>
+        <button class="test-btn" onclick="testAPI('./api/chatbot')">Test: ./api/chatbot</button>
+    </div>
+
+    <div id="results"></div>
+
+    <script>
+        // Display current environment
+        document.getElementById('currentUrl').textContent = window.location.href;
+        document.getElementById('currentHost').textContent = window.location.host;
+        document.getElementById('currentProtocol').textContent = window.location.protocol;
+        document.getElementById('currentPort').textContent = window.location.port || 'default';
+
+        async function testAPI(url) {
+            const resultsDiv = document.getElementById('results');
+            const testDiv = document.createElement('div');
+            
+            testDiv.innerHTML = `<h4>Testing: ${url}</h4><p>Loading...</p>`;
+            resultsDiv.appendChild(testDiv);
+
+            try {
+                console.log('🧪 Testing API URL:', url);
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: 'Test message'
+                    })
+                });
+
+                console.log('📊 Response:', response.status, response.url);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    testDiv.className = 'result success';
+                    testDiv.innerHTML = `
+                        <h4>✅ Success: ${url}</h4>
+                        <p><strong>Status:</strong> ${response.status}</p>
+                        <p><strong>Actual URL:</strong> ${response.url}</p>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    `;
+                } else {
+                    const errorText = await response.text();
+                    testDiv.className = 'result error';
+                    testDiv.innerHTML = `
+                        <h4>❌ Failed: ${url}</h4>
+                        <p><strong>Status:</strong> ${response.status}</p>
+                        <p><strong>Actual URL:</strong> ${response.url}</p>
+                        <p><strong>Error:</strong> ${errorText}</p>
+                    `;
+                }
+            } catch (error) {
+                console.error('🚨 Error:', error);
+                testDiv.className = 'result error';
+                testDiv.innerHTML = `
+                    <h4>💥 Network Error: ${url}</h4>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                    <p><strong>Type:</strong> ${error.name}</p>
+                `;
+            }
+        }
+
+        // Auto-run basic connectivity test
+        window.addEventListener('load', () => {
+            console.log('🔍 Auto-testing basic connectivity...');
+            setTimeout(() => {
+                testAPI('/api/chatbot');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

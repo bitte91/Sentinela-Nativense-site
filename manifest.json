@@ -1,0 +1,33 @@
+{
+  "name": "Sentinela Nativense - Transparência e Ação Cidadã",
+  "short_name": "Sentinela",
+  "description": "Portal de transparência pública e jornalismo investigativo para Natividade da Serra",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#1a3a6e",
+  "theme_color": "#1a3a6e",
+  "categories": ["news", "government", "productivity"],
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://via.placeholder.com/192x192/1a3a6e/d4af37?text=S",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://via.placeholder.com/512x512/1a3a6e/d4af37?text=SENTINELA",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

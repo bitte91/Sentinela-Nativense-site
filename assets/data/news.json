@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Painel de Transparência é atualizado",
+    "summary": "Indicadores e contratos acessíveis ao cidadão.",
+    "image": "https://picsum.photos/seed/painel/1200/700",
+    "url": "pages/noticias.html#p1",
+    "date": "2025-08-09",
+    "tag": "Transparência"
+  },
+  {
+    "title": "Saúde publica balanço do atendimento",
+    "summary": "Indicadores de emergência e consultas.",
+    "image": "https://picsum.photos/seed/saude/1200/700",
+    "url": "pages/noticias.html#p2",
+    "date": "2025-08-08",
+    "tag": "Saúde"
+  },
+  {
+    "title": "Educação debate transporte escolar",
+    "summary": "Audiência sobre rotas e segurança.",
+    "image": "https://picsum.photos/seed/edu/1200/700",
+    "url": "pages/noticias.html#p3",
+    "date": "2025-08-05",
+    "tag": "Educação"
+  }
+]

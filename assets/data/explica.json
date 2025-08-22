@@ -1,0 +1,23 @@
+[
+  {
+    "title": "O que é Impessoalidade?",
+    "summary": "Princípio que inibe favorecimentos.",
+    "image": "https://picsum.photos/seed/impessoalidade/1200/700",
+    "slug": "impessoalidade",
+    "content": "Impessoalidade: tratar todos de forma isonômica, foco no interesse público."
+  },
+  {
+    "title": "Como funciona a LDO",
+    "summary": "Ligação entre PPA, LDO e LOA.",
+    "image": "https://picsum.photos/seed/ldo/1200/700",
+    "slug": "ldo",
+    "content": "A LDO orienta metas e prioridades do orçamento anual."
+  },
+  {
+    "title": "Lei de Acesso à Informação",
+    "summary": "Como solicitar dados públicos.",
+    "image": "https://picsum.photos/seed/lai/1200/700",
+    "slug": "lai",
+    "content": "A LAI garante ao cidadão o direito de acesso às informações públicas."
+  }
+]
